@@ -10,11 +10,10 @@ from remote_control import RemoteControl
 from gui import GUI
 
 settings = Settings("settings.json")
-gui = GUI()
 loop = asyncio.get_event_loop()
 chatbot = Chatbot(settings, loop)
 
 rc = RemoteControl(settings, loop)
 
 chatbot.set_remote_control(rc)
-gui.startup()
+chatbot.run()

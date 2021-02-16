@@ -2,15 +2,13 @@ import sys
 import asyncio
 import time
 
-from chatbot import Chatbot
-from settings import Settings
-from remote_control import RemoteControl
-from gui import GUI
-
 # from PyQt5.QtWidgets import (
 from PySide2.QtWidgets import (
     QApplication, QProgressBar)
-from asyncqt import QEventLoop, QThreadExecutor
+from qasync import QEventLoop, QThreadExecutor
+from chatbot import Chatbot
+from settings import Settings
+from remote_control import RemoteControl
 
 
 app = QApplication(sys.argv)
@@ -40,10 +38,13 @@ def last_50():
         time.sleep(.1)
 
 
-st = Settings("settings.json")
-cb = Chatbot(st, loop)
-cb.run()
+settings = Settings("settings.json")
+loop = asyncio.get_event_loop()
+chatbot = Chatbot(settings, loop)
 
-with loop:
-    loop.run_until_complete(master())
-    loop.run_forever()
+rc = RemoteControl(settings, loop)
+
+chatbot.set_progress(progress)
+
+chatbot.set_remote_control(rc)
+chatbot.run()

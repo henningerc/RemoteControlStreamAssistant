@@ -17,7 +17,6 @@ class Chatbot(commands.Bot):
     def __init__(self, settings, loop):
         self.rc: Optional[RemoteControl] = None
         self.settings = settings
-        self.progress = None
         super().__init__(
             irc_token=settings.get('irc_token'),
             client_id=settings.get('client_id'),
@@ -29,9 +28,6 @@ class Chatbot(commands.Bot):
 
     def set_remote_control(self, rc: RemoteControl):
         self.rc = rc
-
-    def set_progress(self, progress):
-        self.progress = progress
 
     async def event_ready(self):
         """Called once when the bot goes online."""
@@ -50,7 +46,6 @@ class Chatbot(commands.Bot):
     @commands.command(name='da')
     async def da(self, ctx):
         print("da")
-        self.progress.setValue(50)
         await ctx.send("Jo, bin do!")
 
     @commands.command(name='hilfe')

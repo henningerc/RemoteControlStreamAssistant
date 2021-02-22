@@ -1,9 +1,7 @@
 from PySide2.QtWidgets import *
 import sys
-import typing
 import asyncio
-import time
-from asyncqt import QEventLoop, QThreadExecutor
+from qasync import QEventLoop, QThreadExecutor
 
 
 class GUI:

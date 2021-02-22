@@ -1,23 +1,11 @@
-import sys
-import asyncio
-import time
-
-# from PyQt5.QtWidgets import (
-from PySide2.QtWidgets import (
-    QApplication, QProgressBar)
-from qasync import QEventLoop, QThreadExecutor
 from chatbot import Chatbot
 from settings import Settings
 from remote_control import RemoteControl
+from gui import GUI
 
+gui = GUI()
 
-app = QApplication(sys.argv)
-loop = QEventLoop(app)
-asyncio.set_event_loop(loop)
-
-progress = QProgressBar()
-progress.setRange(0, 99)
-progress.show()
+loop = gui.loop
 
 settings = Settings("settings.json")
 chatbot = Chatbot(settings, loop)

@@ -12,12 +12,6 @@ class GUI:
         self.window = QWidget()
         self.layout = QGridLayout()
         self.label = QLabel("Test")
-
-    def startup(self):
         self.window.setLayout(self.layout)
         self.layout.addWidget(self.label, 0, 0)
         self.window.show()
-
-        with self.loop:
-            sys.exit(self.loop.run_forever())
-# gui = GUI()

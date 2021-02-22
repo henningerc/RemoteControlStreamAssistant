@@ -1,9 +1,11 @@
-from twitchio.ext import commands
-from remote_control import RemoteControl
-from typing import Optional, Dict
 import time
 import math
+from typing import Optional, Dict
+
+from twitchio.ext import commands
 from PySide2.QtMultimedia import QSound
+
+from remote_control import RemoteControl
 
 
 class Chatbot(commands.Bot):

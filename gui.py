@@ -15,3 +15,11 @@ class GUI:
         self.window.setLayout(self.layout)
         self.layout.addWidget(self.label, 0, 0)
         self.window.show()
+
+    def add_button(self, text, x, y):
+        button = QPushButton(text)
+        button.clicked.connect(self.test)
+        self.layout.addWidget(button, x, y)
+
+    def test(self):
+        print("Test")

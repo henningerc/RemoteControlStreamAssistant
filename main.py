@@ -11,6 +11,6 @@ settings = Settings("settings.json")
 chatbot = Chatbot(settings, loop)
 
 rc = RemoteControl(settings, loop)
-
+gui.add_button("Test", 1, 1)
 chatbot.set_remote_control(rc)
 chatbot.run()

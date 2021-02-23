@@ -1,8 +1,11 @@
-from twitchio.ext import commands
-from remote_control import RemoteControl
-from typing import Optional, Dict
 import time
 import math
+from typing import Optional, Dict
+
+from twitchio.ext import commands
+from PySide2.QtMultimedia import QSound
+
+from remote_control import RemoteControl
 
 
 class Chatbot(commands.Bot):
@@ -34,8 +37,8 @@ class Chatbot(commands.Bot):
 
     async def event_message(self, ctx):
         """Runs every time a message is sent in chat."""
-
         # make sure the bot ignores itself and the streamer
+        QSound.play("dong.wav")
         if ctx.author.name.lower() == "":  #self.settings.get('bot_nick').lower():
             return
         await self.handle_commands(ctx)

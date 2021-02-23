@@ -1,0 +1,11 @@
+{
+  "irc_token": "oauth:irc_token",
+  "client_id": "clientID",
+  "bot_nick": "YourNick",
+  "prefix": "!",
+  "bot_channel": "#YourChannel",
+
+  "remote_host": "localhost",
+  "remote_port": 4444,
+  "remote_password": "RemotePassword"
+}

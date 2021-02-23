@@ -1,22 +1,25 @@
 from PySide2.QtWidgets import *
-from PySide2.QtCore import QEventLoop
+import sys
 import asyncio
-import time
+from qasync import QEventLoop, QThreadExecutor
 
 
 class GUI:
     def __init__(self):
         self.app = QApplication([])
-        asyncio.set_event_loop(QEventLoop(self.app))
+        self.loop = QEventLoop(self.app)
+        asyncio.set_event_loop(self.loop)
         self.window = QWidget()
         self.layout = QGridLayout()
         self.label = QLabel("Test")
-
-    def startup(self):
         self.window.setLayout(self.layout)
         self.layout.addWidget(self.label, 0, 0)
         self.window.show()
-        self.app.exec_()
 
+    def add_button(self, text, x, y):
+        button = QPushButton(text)
+        button.clicked.connect(self.test)
+        self.layout.addWidget(button, x, y)
 
-# gui = GUI()
+    def test(self):
+        print("Test")

@@ -13,7 +13,7 @@
     {
       "id": "fullscreen",
       "title": "Fullscreen",
-      "button": "0,0",
+      "position": "0,0",
       "key": "F1",
       "commands": [
         {

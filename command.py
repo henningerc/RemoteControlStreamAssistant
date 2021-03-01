@@ -12,7 +12,8 @@ class Command:
         self.pos = {"x": int(position[0]), "y": int(position[1])}
         print(self.pos)
 
-    def run(self):
+    def go(self):
+        # TODO: Kommandos ausführen lassen
         for c in self.commands:
             if c["command"] == "switch_scene":
-                pass # self.data.remote_control.change_scene(c["scene"])
+                self.data.remote_control.change_scene(c["scene"])

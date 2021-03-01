@@ -15,7 +15,8 @@ class Settings:
         with open(filename, 'r') as setting_file:
             self.settings = json.load(setting_file)
             for setting in self.settings["commands"]:
-                self.data.commands.append(Command(setting, self.data))
+                command = Command(setting, self.data)
+                self.data.commands[command.id] = command
 
     def get(self, field):
         return self.settings[field]

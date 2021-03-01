@@ -1,3 +1,5 @@
+from functools import partial
+
 from PySide2.QtWidgets import *
 import asyncio
 from qasync import QEventLoop, QThreadExecutor
@@ -27,13 +29,15 @@ class GUI:
 
         widget.setLayout(layout)
 
-        for command in self.data.commands:
+        for command_id in self.data.commands:
+            command = self.data.commands[command_id]
             self.add_control_button(command, layout)
         return widget
 
     @staticmethod
     def add_control_button(command: Command, layout: QGridLayout):
         button = QPushButton(command.title)
-        button.clicked.connect(command.run())
+        button.clicked.connect(partial(Command.go, command))  # TODO: richtigen Befehl ausführen!
 
         layout.addWidget(button, command.pos["x"], command.pos["y"])
+

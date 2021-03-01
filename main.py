@@ -2,12 +2,15 @@ from chatbot import Chatbot
 from settings import Settings
 from remote_control import RemoteControl
 from gui import GUI
+from data import Data
 
 gui = GUI()
 
 loop = gui.loop
 
-settings = Settings("settings.json")
+data = Data()
+
+settings = Settings("settings.json", data)
 chatbot = Chatbot(settings, loop)
 
 rc = RemoteControl(settings, loop)

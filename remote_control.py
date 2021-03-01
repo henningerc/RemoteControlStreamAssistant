@@ -1,6 +1,4 @@
-import asyncio
 import simpleobsws
-from settings import Settings
 
 
 class RemoteControl:

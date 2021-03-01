@@ -9,7 +9,7 @@
   "remote_port": 4444,
   "remote_password": "RemotePassword",
 
-  "rc_commands": [
+  "commands": [
     {
       "id": "fullscreen",
       "title": "Fullscreen",

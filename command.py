@@ -7,7 +7,10 @@ class Command:
         self.title = settings["title"]
         self.commands = settings["commands"]
         self.data = dat
-        self.pos = {}
+        string: str = settings["position"]
+        position = string.replace(" ", "").split(",")
+        self.pos = {"x": int(position[0]), "y": int(position[1])}
+        print(self.pos)
 
     def run(self):
         for c in self.commands:

@@ -36,4 +36,4 @@ class GUI:
         button = QPushButton(command.title)
         button.clicked.connect(command.run())
 
-        layout.addWidget(button, 0, 0)  # command.pos["x"], command.pos["y"])
+        layout.addWidget(button, command.pos["x"], command.pos["y"])

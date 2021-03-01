@@ -37,7 +37,7 @@ class GUI:
     @staticmethod
     def add_control_button(command: Command, layout: QGridLayout):
         button = QPushButton(command.title)
-        button.clicked.connect(partial(Command.go, command))  # TODO: richtigen Befehl ausführen!
+        button.clicked.connect(partial(Command.go, command))
 
         layout.addWidget(button, command.pos["x"], command.pos["y"])
 

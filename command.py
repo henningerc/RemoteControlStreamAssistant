@@ -1,4 +1,5 @@
 import data
+import asyncio
 
 
 class Command:
@@ -13,7 +14,6 @@ class Command:
         print(self.pos)
 
     def go(self):
-        # TODO: Kommandos ausführen lassen
         for c in self.commands:
             if c["command"] == "switch_scene":
-                self.data.remote_control.change_scene(c["scene"])
+                asyncio.create_task(self.data.remote_control.change_scene(c["scene"]))

@@ -12,6 +12,6 @@ gui = GUI(data)
 loop = gui.loop
 chatbot = Chatbot(settings, loop)
 
-rc = RemoteControl(settings, loop)
-chatbot.set_remote_control(rc)
+data.remote_control = RemoteControl(settings, loop)
+chatbot.set_remote_control(data.remote_control)
 chatbot.run()

@@ -1,6 +1,4 @@
-import asyncio
 import simpleobsws
-from settings import Settings
 
 
 class RemoteControl:
@@ -17,7 +15,7 @@ class RemoteControl:
     async def on_event(self, data):
         # Print the event data. Note that `update-type` is also provided in the data
         # print('New event! Type: {} | Raw Data: {}'.format(data['update-type'], data))
-        print("---")
+        print(data)
 
     async def on_switchscenes(self, data):
         print('Scene switched to "{}". It has these sources: {}'.format(data['scene-name'], data['sources']))

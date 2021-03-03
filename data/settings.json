@@ -7,5 +7,20 @@
 
   "remote_host": "localhost",
   "remote_port": 4444,
-  "remote_password": "RemotePassword"
+  "remote_password": "RemotePassword",
+
+  "commands": [
+    {
+      "id": "fullscreen",
+      "title": "Fullscreen",
+      "position": "0,0",
+      "key": "F1",
+      "commands": [
+        {
+          "command": "switch_scene",
+          "scene": "Scene: Fullscreen"
+        }
+      ]
+    }
+  ]
 }

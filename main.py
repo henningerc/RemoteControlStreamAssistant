@@ -1,16 +1,25 @@
+import asyncio
+
+from qasync import QEventLoop
+
+from GUI.MainWindow import MainWindow
+
 from chatbot import Chatbot
 from settings import Settings
 from remote_control import RemoteControl
-from gui import GUI
+from data import Data
+from PySide2.QtWidgets import QApplication
 
-gui = GUI()
+data = Data()
+app = QApplication()
 
-loop = gui.loop
+loop = QEventLoop(app)
+asyncio.set_event_loop(loop)
 
-settings = Settings("settings.json")
+settings = Settings("settings.json", data)
+gui = MainWindow(data)
 chatbot = Chatbot(settings, loop)
 
-rc = RemoteControl(settings, loop)
-gui.add_button("Test", 1, 1)
-chatbot.set_remote_control(rc)
+data.remote_control = RemoteControl(settings, loop)
+chatbot.set_remote_control(data.remote_control)
 chatbot.run()

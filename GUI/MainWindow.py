@@ -1,6 +1,6 @@
 from typing import Dict
 
-from PySide2.QtWidgets import QWidget, QApplication, QGridLayout
+from PySide2.QtWidgets import QWidget, QGridLayout
 from PySide2.QtGui import QKeyEvent
 from PySide2 import QtCore
 
@@ -30,6 +30,5 @@ class MainWindow(QWidget):
             key = kb_map[cmd.key]
             self.keys[key] = cmd
 
-    def keyPressEvent(self, event:QKeyEvent) -> None:
+    def keyPressEvent(self, event: QKeyEvent) -> None:
         self.keys[event.key()].go()
-

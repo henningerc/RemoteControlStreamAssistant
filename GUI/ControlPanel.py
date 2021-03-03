@@ -1,6 +1,5 @@
-from functools import partial
-
 from PySide2.QtWidgets import QGridLayout, QPushButton, QWidget
+from PySide2.QtCore import SIGNAL
 
 from command import Command
 from data import Data
@@ -21,8 +20,6 @@ class ControlPanel(QWidget):
 
     @staticmethod
     def add_control_button(command: Command, layout: QGridLayout):
-        button = QPushButton(command.title)
-        button.clicked.connect(partial(Command.go, command))
-
+        button = QPushButton(command.title + " (" + command.key + ")")
+        button.connect(SIGNAL('clicked()'), lambda cmd=command: Command.go(cmd))
         layout.addWidget(button, command.pos["x"], command.pos["y"])
-

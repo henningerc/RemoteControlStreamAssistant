@@ -1,4 +1,4 @@
-from typing import Optional, List, TYPE_CHECKING, Dict
+from typing import Optional, TYPE_CHECKING, Dict
 
 if TYPE_CHECKING:
     import remote_control
@@ -10,4 +10,4 @@ class Data:
     def __init__(self):
         self.remote_control: Optional[remote_control.RemoteControl] = None
         self.settings: Optional[settings.Settings] = None
-        self.commands: Optional[Dict[command.Command]] = {}
+        self.commands: Optional[Dict[str, command.Command]] = {}

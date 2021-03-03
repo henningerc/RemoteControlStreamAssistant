@@ -11,6 +11,7 @@ class Command:
         string: str = settings["position"]
         position = string.replace(" ", "").split(",")
         self.pos = {"x": int(position[0]), "y": int(position[1])}
+        self.key = settings["key"]
         print(self.pos)
 
     def go(self):

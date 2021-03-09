@@ -23,9 +23,10 @@ class MainWindow(QWidget):
     def build(self):
         control_panel = ControlPanel(self.data)
         splitter = QSplitter(QtCore.Qt.Horizontal)
-        splitter.addWidget(control_panel)
-        chat_panel = ChatPanel()
+        chat_panel = ChatPanel(self.data)
+
         splitter.addWidget(chat_panel)
+        splitter.addWidget(control_panel)
         self.setLayout(QGridLayout())
         self.layout().addWidget(splitter)
         self.show()

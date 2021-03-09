@@ -14,9 +14,10 @@ class Chatbot(commands.Bot):
     async def event_pubsub(self, data):
         pass
 
-    def __init__(self, settings, loop):
+    def __init__(self, settings, loop, data):
         self.rc: Optional[RemoteControl] = None
         self.settings = settings
+        self.data = data
         super().__init__(
             irc_token=settings.get('irc_token'),
             client_id=settings.get('client_id'),
@@ -39,7 +40,9 @@ class Chatbot(commands.Bot):
         """Runs every time a message is sent in chat."""
         # make sure the bot ignores itself and the streamer
         QSound.play("dong.wav")
-        if ctx.author.name.lower() == "":  #self.settings.get('bot_nick').lower():
+        cm = self.data.chat.add_message(ctx.author.name, ctx.content)
+        self.data.chat_panel.show_message(cm)
+        if ctx.author.name.lower() == "":  # self.settings.get('bot_nick').lower():
             return
         await self.handle_commands(ctx)
 

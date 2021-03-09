@@ -5,6 +5,7 @@ if TYPE_CHECKING:
     import remote_control
     import settings
     import command
+    from GUI.ChatPanel import ChatPanel
 
 
 class Data:
@@ -13,3 +14,5 @@ class Data:
         self.settings: Optional[settings.Settings] = None
         self.commands: Optional[Dict[str, command.Command]] = {}
         self.chat: Chat = Chat()
+
+        self.chat_panel: ChatPanel = None

@@ -16,7 +16,7 @@ def calculate_colors(name: str):
     foreground_color = '#' + ''.join(tuple(hex(int(i * 255))[2:4] for i in fg))
     background_color = '#' + ''.join(tuple(hex(int(i * 255))[2:4] for i in bg))
 
-    return (foreground_color, background_color)
+    return foreground_color, background_color
 
 
 def lighter_quarter(color: int):

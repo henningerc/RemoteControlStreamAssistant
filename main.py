@@ -18,7 +18,7 @@ asyncio.set_event_loop(loop)
 
 settings = Settings("settings.json", data)
 gui = MainWindow(data)
-chatbot = Chatbot(settings, loop)
+chatbot = Chatbot(settings, loop, data)
 
 data.remote_control = RemoteControl(settings, loop)
 chatbot.set_remote_control(data.remote_control)

@@ -8,9 +8,11 @@ class Chat:
     chatters: Dict[str, Chatter] = {}
     messages: List[ChatMessage] = []
 
-    def add_message(self, chatter: str, text: str):
+    def add_message(self, chatter: str, text: str) -> ChatMessage:
         if chatter not in self.chatters.keys():
             self.chatters[chatter] = Chatter(chatter)
 
         c = self.chatters[chatter]
-        self.messages.append(ChatMessage(c, text))
+        msg = ChatMessage(c, text)
+        self.messages.append(msg)
+        return msg

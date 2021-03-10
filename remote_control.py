@@ -24,6 +24,18 @@ class RemoteControl:
         result = await self.ws.call('SetCurrentScene', {'scene-name': scene_name})
         print(result)
 
+    async def toggle_scene_item_visibility(self, scene_name, scene_item):
+        result = await self.ws.call("GetSceneItemProperties", {"scene-name": scene_name, "item": scene_item})
+        await self.ws.call(
+            "SetSceneItemRender",
+            {"scene-name": scene_name, "source": scene_item, "render": not result["visible"]})
+
+    async def hide_scene_item(self, scene_name, scene_item):
+        await self.ws.call("SetSceneItemRender", {"scene-name": scene_name, "source": scene_item, "render": False})
+
+    async def show_scene_item(self, scene_name, scene_item):
+        await self.ws.call("SetSceneItemRender", {"scene-name": scene_name, "source": scene_item, "render": True})
+
     async def show_item(self, scene, item):
         result = await self.ws.call('SetSceneItemProperties', {'scene-name': scene,
                                                                'item': item,

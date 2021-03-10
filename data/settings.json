@@ -9,12 +9,15 @@
   "remote_port": 4444,
   "remote_password": "RemotePassword",
 
+  "image_folder": "images/",
+
   "commands": [
     {
       "id": "fullscreen",
       "title": "Fullscreen",
       "position": "0,0",
       "key": "F1",
+      "image": "fullscreen.png",
       "commands": [
         {
           "command": "switch_scene",

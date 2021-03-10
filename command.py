@@ -7,6 +7,8 @@ class Command:
         self.id = settings["id"]
         self.title = settings["title"]
         self.commands = settings["commands"]
+        self.image = settings.get("image")
+        self.color = settings.get("color")
         self.data = dat
         string: str = settings["position"]
         position = string.replace(" ", "").split(",")

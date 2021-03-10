@@ -22,5 +22,4 @@ chatbot = Chatbot(settings, loop, data)
 
 data.remote_control = RemoteControl(settings, loop)
 chatbot.set_remote_control(data.remote_control)
-asyncio.get_event_loop().run_until_complete(data.remote_control.hide_scene_item("Scene: Fullscreen", "Base: On Screen"))
 chatbot.run()

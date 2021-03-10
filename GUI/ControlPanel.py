@@ -1,5 +1,6 @@
-from PySide2.QtWidgets import QGridLayout, QPushButton, QWidget
-from PySide2.QtCore import SIGNAL
+from PySide2.QtWidgets import QGridLayout, QPushButton, QWidget, QLabel
+from PySide2.QtCore import SIGNAL, QSize
+from PySide2.QtGui import QIcon
 
 from command import Command
 from data import Data
@@ -20,6 +21,12 @@ class ControlPanel(QWidget):
 
     @staticmethod
     def add_control_button(command: Command, layout: QGridLayout):
-        button = QPushButton(command.title + " (" + command.key + ")")
+        button = QPushButton()
         button.connect(SIGNAL('clicked()'), lambda cmd=command: Command.go(cmd))
+        if command.image is not None:
+            button.setIconSize(QSize(150, 150))
+            button.setIcon(QIcon(command.image))
+            button.setStyleSheet("background-color: red;")
+        else:
+            button.setText(command.title + " (" + command.key + ")")
         layout.addWidget(button, command.pos["x"], command.pos["y"])

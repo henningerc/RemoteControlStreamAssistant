@@ -4,6 +4,7 @@ from PySide2.QtGui import QIcon
 
 from command import Command
 from data import Data
+from GUI.StatusWidget import StatusWidget
 
 
 class ControlPanel(QWidget):
@@ -13,6 +14,7 @@ class ControlPanel(QWidget):
         layout = QGridLayout()
         self.setLayout(layout)
         self.setup_buttons()
+        layout.addWidget(StatusWidget(), 0, 0)
 
     def setup_buttons(self):
         for command_id in self.data.commands:

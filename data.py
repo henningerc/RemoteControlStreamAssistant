@@ -1,5 +1,6 @@
 from typing import Optional, TYPE_CHECKING, Dict
 from Model.Chat import Chat
+from Controller.Status import Status
 
 if TYPE_CHECKING:
     import remote_control
@@ -14,5 +15,6 @@ class Data:
         self.settings: Optional[settings.Settings] = None
         self.commands: Optional[Dict[str, command.Command]] = {}
         self.chat: Chat = Chat()
+        self.status: Status = Status(self)
 
         self.chat_panel: ChatPanel = None

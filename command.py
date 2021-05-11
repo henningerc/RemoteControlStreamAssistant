@@ -14,7 +14,7 @@ class Command:
         position = string.replace(" ", "").split(",")
         self.pos = {"x": int(position[0]), "y": int(position[1])}
         self.key = settings["key"]
-        print(self.pos)
+        self.status = settings.get("status")
 
     def go(self):
         for c in self.commands:
@@ -23,4 +23,7 @@ class Command:
                 return
             if c["command"] == "switch_overlay":
                 asyncio.create_task(self.data.remote_control.toggle_scene_item_visibility(c["scene"], c["source"]))
+                return
+            if c["command"] == "set_scene_lamp":
+                asyncio.create_task(self.data.status.set_scene(c["scene"]))
                 return

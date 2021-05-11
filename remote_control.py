@@ -13,6 +13,7 @@ class RemoteControl:
         loop.run_until_complete(self.ws.connect())
         self.ws.register(self.on_event)
         self.ws.register(self.on_switchscenes, 'SwitchScenes')
+        self.ws.register(self.on_switch_scene_item, 'SceneItemVisibilityChanged')
 
     async def on_event(self, data):
         # Print the event data. Note that `update-type` is also provided in the data
@@ -22,6 +23,10 @@ class RemoteControl:
 
     async def on_switchscenes(self, data):
         await self.data.status.set_scene(data['scene-name'])
+
+    async def on_switch_scene_item(self, data):
+        await self.data.status.set_overlay_visible(data['scene-name'], data['item-name'], "True" if data['item-visible'] else "False")
+        print(data)
 
     async def change_scene(self, scene_name):
         result = await self.ws.call('SetCurrentScene', {'scene-name': scene_name})

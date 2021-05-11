@@ -16,6 +16,10 @@ class StatusLamp:
 
         if settings["operator"] == "scene_active":
             self.colors = settings["scenes"]
+        if settings["operator"] == "scene_item_visible":
+            self.colors["True"] = settings["color"]
+            self.scene = settings["scene"]
+            self.source = settings["source"]
 
     def get_color(self):
         return self.colors.get(self.status) or self.standard_color

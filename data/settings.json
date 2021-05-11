@@ -24,6 +24,36 @@
           "scene": "Scene: Fullscreen"
         }
       ]
+    },
+    {
+      "id": "brb",
+      "title": "Be right Back",
+      "position": "0,2",
+      "key": "F3",
+      "commands": [
+        {
+          "command": "switch_overlay",
+          "scene": "Base: On Screen",
+          "source": "Overlay: Be right Back"
+        }
+      ],
+      "status": [
+        {
+          "name": "active",
+          "colors": [
+            {
+              "color": "00ff00",
+              "command": "source_active",
+              "scene": "Base: On Screen",
+              "source": "Overlay: Be right Back"
+            },
+            {
+              "color": "ff0000",
+              "command": "default"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -20,6 +20,6 @@ settings = Settings("settings.json", data)
 gui = MainWindow(data)
 chatbot = Chatbot(settings, loop, data)
 
-data.remote_control = RemoteControl(settings, loop)
+data.remote_control = RemoteControl(data, loop)
 chatbot.set_remote_control(data.remote_control)
 chatbot.run()

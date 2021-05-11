@@ -2,7 +2,9 @@ import simpleobsws
 
 
 class RemoteControl:
-    def __init__(self, settings, loop):
+    def __init__(self, data, loop):
+        settings = data.settings
+        self.data = data
         self.ws = simpleobsws.obsws(
             host=settings.get('remote_host'),
             port=settings.get('remote_port'),
@@ -15,10 +17,11 @@ class RemoteControl:
     async def on_event(self, data):
         # Print the event data. Note that `update-type` is also provided in the data
         # print('New event! Type: {} | Raw Data: {}'.format(data['update-type'], data))
-        print(data)
+        # print(data)
+        pass
 
     async def on_switchscenes(self, data):
-        print('Scene switched to "{}". It has these sources: {}'.format(data['scene-name'], data['sources']))
+        await self.data.status.set_scene(data['scene-name'])
 
     async def change_scene(self, scene_name):
         result = await self.ws.call('SetCurrentScene', {'scene-name': scene_name})

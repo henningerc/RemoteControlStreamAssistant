@@ -5,7 +5,7 @@ from typing import Optional, Dict
 from twitchio.ext import commands
 from PySide2.QtMultimedia import QSound
 
-from remote_control import RemoteControl
+from Controller.RemoteControlController import RemoteControlController
 
 
 class ChatbotController(commands.Bot):
@@ -15,7 +15,7 @@ class ChatbotController(commands.Bot):
         pass
 
     def __init__(self, settings, loop, data):
-        self.rc: Optional[RemoteControl] = None
+        self.rc: Optional[RemoteControlController] = None
         self.settings = settings
         self.data = data
         super().__init__(
@@ -27,7 +27,7 @@ class ChatbotController(commands.Bot):
             loop=loop
         )
 
-    def set_remote_control(self, rc: RemoteControl):
+    def set_remote_control(self, rc: RemoteControlController):
         self.rc = rc
 
     async def event_ready(self):

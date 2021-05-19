@@ -6,7 +6,7 @@ from GUI.MainWindow import MainWindow
 
 from Controller.ChatBotController import ChatbotController
 from settings import Settings
-from remote_control import RemoteControl
+from Controller.RemoteControlController import RemoteControlController
 from Model.Data import Data
 from PySide2.QtWidgets import QApplication
 
@@ -20,6 +20,6 @@ settings = Settings("settings.json", data)
 gui = MainWindow(data)
 chatbot = ChatbotController(settings, loop, data)
 
-data.remote_control = RemoteControl(data, loop)
+data.remote_control = RemoteControlController(data, loop)
 chatbot.set_remote_control(data.remote_control)
 chatbot.run()

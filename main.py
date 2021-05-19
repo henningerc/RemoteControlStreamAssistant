@@ -7,7 +7,7 @@ from GUI.MainWindow import MainWindow
 from Controller.ChatBotController import ChatbotController
 from settings import Settings
 from remote_control import RemoteControl
-from data import Data
+from Model.Data import Data
 from PySide2.QtWidgets import QApplication
 
 data = Data()

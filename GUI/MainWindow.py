@@ -4,7 +4,7 @@ from PySide2.QtWidgets import QWidget, QGridLayout, QSplitter
 from PySide2.QtGui import QKeyEvent
 from PySide2 import QtCore
 
-from data import Data
+from Model.Data import Data
 from GUI.ControlPanel import ControlPanel
 from GUI.keyboard_map import kb_map
 from GUI.ChatPanel import ChatPanel

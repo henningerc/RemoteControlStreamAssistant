@@ -1,8 +1,8 @@
-import data
+from Model import Data
 
 
 class Command:
-    def __init__(self, settings, dat: data.Data):
+    def __init__(self, settings, dat: Data.Data):
         self.id = settings["id"]
         self.title = settings["title"]
         self.commands = settings["commands"]

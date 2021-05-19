@@ -1,7 +1,7 @@
 import simpleobsws
 
 
-class RemoteControl:
+class RemoteControlController:
     def __init__(self, data, loop):
         settings = data.settings
         self.data = data

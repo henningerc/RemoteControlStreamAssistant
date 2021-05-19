@@ -1,7 +1,7 @@
 from PySide2.QtWidgets import QTextEdit
 
 from Model.ChatMessage import ChatMessage
-from data import Data
+from Model.Data import Data
 
 
 class ChatPanel(QTextEdit):

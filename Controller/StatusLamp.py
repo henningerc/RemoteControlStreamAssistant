@@ -1,7 +1,6 @@
 from typing import Dict, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from data import Data
     from GUI.StatusWidget import StatusWidget
 
 

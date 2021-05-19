@@ -4,11 +4,12 @@ from PySide2.QtWidgets import QWidget, QGridLayout, QSplitter
 from PySide2.QtGui import QKeyEvent
 from PySide2 import QtCore
 
-from data import Data
+from Model.Data import Data
 from GUI.ControlPanel import ControlPanel
 from GUI.keyboard_map import kb_map
 from GUI.ChatPanel import ChatPanel
-from command import Command
+from Model.Command import Command
+from Controller.CommandController import go
 
 
 class MainWindow(QWidget):
@@ -38,4 +39,4 @@ class MainWindow(QWidget):
 
     def keyPressEvent(self, event: QKeyEvent) -> None:
         if event.key() in self.keys.keys():
-            self.keys[event.key()].go()
+            go(self.keys[event.key()])

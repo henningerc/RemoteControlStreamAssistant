@@ -3,7 +3,7 @@ from typing import Dict, Set, TYPE_CHECKING
 from Controller.StatusLamp import StatusLamp
 
 if TYPE_CHECKING:
-    from data import Data
+    from Model.Data import Data
 
 
 class Status:

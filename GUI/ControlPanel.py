@@ -1,6 +1,6 @@
-from PySide2.QtWidgets import QGridLayout, QPushButton, QWidget
+from PySide2.QtWidgets import QGridLayout, QWidget
 
-from data import Data
+from Model.Data import Data
 from GUI.ControlWidget import ControlWidget
 
 

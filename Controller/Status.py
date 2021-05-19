@@ -19,9 +19,11 @@ class Status:
             lamp.redraw()
 
     async def set_overlay_visible(self, scene, source, visibility):
-        for lamp in self.overlay_lamps[scene][source]:
-            lamp.status = visibility
-            lamp.redraw()
+        if scene in self.overlay_lamps:
+            if source in self.overlay_lamps[scene]:
+                for lamp in self.overlay_lamps[scene][source]:
+                    lamp.status = visibility
+                    lamp.redraw()
 
     def register_lamp(self, lamp: StatusLamp):
         if lamp.operator == "scene_active":

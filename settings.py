@@ -1,6 +1,6 @@
 import json
 from data import Data
-from command import Command
+from Model.Command import Command
 
 
 class Settings:

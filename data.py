@@ -5,7 +5,7 @@ from Controller.Status import Status
 if TYPE_CHECKING:
     import remote_control
     import settings
-    import command
+    from Model.Command import Command
     from GUI.ChatPanel import ChatPanel
 
 
@@ -13,7 +13,7 @@ class Data:
     def __init__(self):
         self.remote_control: Optional[remote_control.RemoteControl] = None
         self.settings: Optional[settings.Settings] = None
-        self.commands: Optional[Dict[str, command.Command]] = {}
+        self.commands: Optional[Dict[str, Command]] = {}
         self.chat: Chat = Chat()
         self.status: Status = Status(self)
 

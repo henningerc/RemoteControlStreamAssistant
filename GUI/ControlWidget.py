@@ -3,7 +3,8 @@ from PySide2.QtCore import SIGNAL, QSize
 from PySide2.QtGui import QIcon
 
 from Controller.StatusLamp import StatusLamp
-from command import Command
+from Model.Command import Command
+from Controller.CommandController import go
 from GUI.StatusWidget import StatusWidget
 
 
@@ -17,7 +18,7 @@ class ControlWidget(QWidget):
 
     def add_control_button(self, command: Command):
         button = QPushButton()
-        button.connect(SIGNAL('clicked()'), lambda cmd=command: Command.go(cmd))
+        button.connect(SIGNAL('clicked()'), lambda cmd=command: go(cmd))
         if command.image is not None:
             button.setIconSize(QSize(150, 150))
             button.setIcon(QIcon(command.image))

@@ -8,7 +8,8 @@ from data import Data
 from GUI.ControlPanel import ControlPanel
 from GUI.keyboard_map import kb_map
 from GUI.ChatPanel import ChatPanel
-from command import Command
+from Model.Command import Command
+from Controller.CommandController import go
 
 
 class MainWindow(QWidget):
@@ -38,4 +39,4 @@ class MainWindow(QWidget):
 
     def keyPressEvent(self, event: QKeyEvent) -> None:
         if event.key() in self.keys.keys():
-            self.keys[event.key()].go()
+            go(self.keys[event.key()])

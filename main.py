@@ -5,7 +5,7 @@ from qasync import QEventLoop
 from GUI.MainWindow import MainWindow
 
 from Controller.ChatBotController import ChatbotController
-from settings import Settings
+from Model.Settings import Settings
 from Controller.RemoteControlController import RemoteControlController
 from Model.Data import Data
 from PySide2.QtWidgets import QApplication

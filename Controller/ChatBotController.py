@@ -8,7 +8,7 @@ from PySide2.QtMultimedia import QSound
 from remote_control import RemoteControl
 
 
-class Chatbot(commands.Bot):
+class ChatbotController(commands.Bot):
     blocker: Dict[str, float] = {}
 
     async def event_pubsub(self, data):

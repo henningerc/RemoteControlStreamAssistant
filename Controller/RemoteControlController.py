@@ -49,3 +49,7 @@ class RemoteControlController:
                                                                'item': item,
                                                                'visible': True})
         print(result)
+
+    async def set_mute(self, source, value):
+        result = await self.ws.call('SetMute', {'source': source, 'mute': value})
+        print(result)

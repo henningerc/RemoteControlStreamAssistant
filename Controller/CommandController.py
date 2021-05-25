@@ -19,3 +19,6 @@ def go(cmd: Command):
         if c["command"] == "set_unmute":
             asyncio.create_task(cmd.data.remote_control.set_mute(c["source"], False))
             continue
+        if c["command"] == "toggle_mute":
+            asyncio.create_task(cmd.data.remote_control.toggle_mute(c["source"]))
+            continue

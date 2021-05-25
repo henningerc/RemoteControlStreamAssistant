@@ -38,6 +38,9 @@ class RemoteControlController:
             "SetSceneItemRender",
             {"scene-name": scene_name, "source": scene_item, "render": not result["visible"]})
 
+    async def toggle_mute(self, source):
+        await self.ws.call("ToggleMute", {"source": source})
+
     async def hide_scene_item(self, scene_name, scene_item):
         await self.ws.call("SetSceneItemRender", {"scene-name": scene_name, "source": scene_item, "render": False})
 

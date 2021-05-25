@@ -22,4 +22,5 @@ chatbot = ChatbotController(settings, loop, data)
 
 data.remote_control = RemoteControlController(data, loop)
 chatbot.set_remote_control(data.remote_control)
+asyncio.create_task(data.status.check_stati())
 chatbot.run()

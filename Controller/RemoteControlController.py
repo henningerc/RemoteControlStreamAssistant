@@ -19,7 +19,6 @@ class RemoteControlController:
     async def on_event(self, data):
         # Print the event data. Note that `update-type` is also provided in the data
         # print('New event! Type: {} | Raw Data: {}'.format(data['update-type'], data))
-        print("on_event:" + str(data))
         pass
 
     async def on_switchscenes(self, data):
@@ -31,8 +30,16 @@ class RemoteControlController:
     async def on_toggle_mute(self, data):
         await self.data.status.set_mute(data["sourceName"], data["muted"])
 
+    async def get_scene(self):
+        result = await self.ws.call('GetCurrentScene')
+        await self.data.status.set_scene(result['name'])
+
+    async def get_mute(self, source):
+        result = await self.ws.call('GetMute', {'source': source})
+        await self.data.status.set_mute(result['name'], result['muted'])
+
     async def change_scene(self, scene_name):
-        result = await self.ws.call('SetCurrentScene', {'scene-name': scene_name})
+        await self.ws.call('SetCurrentScene', {'scene-name': scene_name})
 
     async def toggle_scene_item_visibility(self, scene_name, scene_item):
         result = await self.ws.call("GetSceneItemProperties", {"scene-name": scene_name, "item": scene_item})

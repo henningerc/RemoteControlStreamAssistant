@@ -47,3 +47,7 @@ class Status:
                 self.mute_lamps[lamp.source] = set()
             self.mute_lamps[lamp.source].add(lamp)
 
+    async def check_stati(self):
+        await self.data.remote_control.get_scene()
+        for audio in self.mute_lamps:
+            await self.data.remote_control.get_mute(audio)

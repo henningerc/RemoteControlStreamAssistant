@@ -14,11 +14,12 @@ class RemoteControlController:
         self.ws.register(self.on_event)
         self.ws.register(self.on_switchscenes, 'SwitchScenes')
         self.ws.register(self.on_switch_scene_item, 'SceneItemVisibilityChanged')
+        self.ws.register(self.on_toggle_mute, 'SourceMuteStateChanged')
 
     async def on_event(self, data):
         # Print the event data. Note that `update-type` is also provided in the data
         # print('New event! Type: {} | Raw Data: {}'.format(data['update-type'], data))
-        # print(data)
+        print("on_event:" + str(data))
         pass
 
     async def on_switchscenes(self, data):
@@ -26,11 +27,12 @@ class RemoteControlController:
 
     async def on_switch_scene_item(self, data):
         await self.data.status.set_overlay_visible(data['scene-name'], data['item-name'], "True" if data['item-visible'] else "False")
-        print(data)
+
+    async def on_toggle_mute(self, data):
+        await self.data.status.set_mute(data["sourceName"], data["muted"])
 
     async def change_scene(self, scene_name):
         result = await self.ws.call('SetCurrentScene', {'scene-name': scene_name})
-        print(result)
 
     async def toggle_scene_item_visibility(self, scene_name, scene_item):
         result = await self.ws.call("GetSceneItemProperties", {"scene-name": scene_name, "item": scene_item})

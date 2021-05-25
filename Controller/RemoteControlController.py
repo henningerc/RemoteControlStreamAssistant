@@ -38,6 +38,10 @@ class RemoteControlController:
         result = await self.ws.call('GetMute', {'source': source})
         await self.data.status.set_mute(result['name'], result['muted'])
 
+    async def get_scene_item(self, scene, source):
+        result = await self.ws.call("GetSceneItemProperties", {"scene-name": scene, "item": source})
+        await self.data.status.set_overlay_visible(scene, source, "True" if result["visible"] else "False")
+
     async def change_scene(self, scene_name):
         await self.ws.call('SetCurrentScene', {'scene-name': scene_name})
 

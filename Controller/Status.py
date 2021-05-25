@@ -51,3 +51,7 @@ class Status:
         await self.data.remote_control.get_scene()
         for audio in self.mute_lamps:
             await self.data.remote_control.get_mute(audio)
+
+        for scene in self.overlay_lamps:
+            for source in self.overlay_lamps[scene]:
+                await self.data.remote_control.get_scene_item(scene, source)

@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class Status:
     scene_lamps: Set[StatusLamp] = set()
     overlay_lamps: Dict[str, Dict[str, Set[StatusLamp]]] = {}
+    mute_lamps: Dict[str, Set[StatusLamp]] = {}
 
     def __init__(self, data):
         self.data: Data = data
@@ -19,9 +20,17 @@ class Status:
             lamp.redraw()
 
     async def set_overlay_visible(self, scene, source, visibility):
-        for lamp in self.overlay_lamps[scene][source]:
-            lamp.status = visibility
-            lamp.redraw()
+        if scene in self.overlay_lamps:
+            if source in self.overlay_lamps[scene]:
+                for lamp in self.overlay_lamps[scene][source]:
+                    lamp.status = visibility
+                    lamp.redraw()
+
+    async def set_mute(self, source: str, muted: bool):
+        if source in self.mute_lamps:
+            for lamp in self.mute_lamps[source]:
+                lamp.status = "True" if muted else "False"
+                lamp.redraw()
 
     def register_lamp(self, lamp: StatusLamp):
         if lamp.operator == "scene_active":
@@ -33,3 +42,8 @@ class Status:
             if lamp.source not in self.overlay_lamps[lamp.scene]:
                 self.overlay_lamps[lamp.scene][lamp.source] = set()
             self.overlay_lamps[lamp.scene][lamp.source].add(lamp)
+        if lamp.operator == "audio_muted":
+            if lamp.source not in self.mute_lamps:
+                self.mute_lamps[lamp.source] = set()
+            self.mute_lamps[lamp.source].add(lamp)
+

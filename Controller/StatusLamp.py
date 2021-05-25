@@ -19,6 +19,9 @@ class StatusLamp:
             self.colors["True"] = settings["color"]
             self.scene = settings["scene"]
             self.source = settings["source"]
+        if settings["operator"] == "audio_muted":
+            self.source = settings["source"]
+            self.colors["True"] = settings["color"]
 
     def get_color(self):
         return self.colors.get(self.status) or self.standard_color

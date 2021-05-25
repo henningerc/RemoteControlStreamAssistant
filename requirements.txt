@@ -1,0 +1,6 @@
+PySide2~=5.15.2
+asyncio~=3.4.3
+qasync~=0.13.0
+setuptools~=53.0.0
+twitchio~=1.2.1
+simpleobsws~=0.0.7

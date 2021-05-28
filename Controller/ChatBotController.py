@@ -1,19 +1,23 @@
-from twitchio.ext import commands
-from remote_control import RemoteControl
-from typing import Optional, Dict
 import time
 import math
+from typing import Optional, Dict
+
+from twitchio.ext import commands
+from PySide2.QtMultimedia import QSound
+
+from Controller.RemoteControlController import RemoteControlController
 
 
-class Chatbot(commands.Bot):
+class ChatbotController(commands.Bot):
     blocker: Dict[str, float] = {}
 
     async def event_pubsub(self, data):
         pass
 
-    def __init__(self, settings, loop):
-        self.rc: Optional[RemoteControl] = None
+    def __init__(self, settings, loop, data):
+        self.rc: Optional[RemoteControlController] = None
         self.settings = settings
+        self.data = data
         super().__init__(
             irc_token=settings.get('irc_token'),
             client_id=settings.get('client_id'),
@@ -23,7 +27,7 @@ class Chatbot(commands.Bot):
             loop=loop
         )
 
-    def set_remote_control(self, rc: RemoteControl):
+    def set_remote_control(self, rc: RemoteControlController):
         self.rc = rc
 
     async def event_ready(self):
@@ -34,9 +38,11 @@ class Chatbot(commands.Bot):
 
     async def event_message(self, ctx):
         """Runs every time a message is sent in chat."""
-
         # make sure the bot ignores itself and the streamer
-        if ctx.author.name.lower() == "":  #self.settings.get('bot_nick').lower():
+        QSound.play("dong.wav")
+        cm = self.data.chat.add_message(ctx.author.name, ctx.content)
+        self.data.chat_panel.show_message(cm)
+        if ctx.author.name.lower() == "":  # self.settings.get('bot_nick').lower():
             return
         await self.handle_commands(ctx)
 

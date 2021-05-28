@@ -1,20 +1,26 @@
 import asyncio
-from PySide2.QtWidgets import *
-from PySide2.QtCore import QEventLoop
 
-import simpleobsws
+from qasync import QEventLoop
 
-from chatbot import Chatbot
-from settings import Settings
-from remote_control import RemoteControl
-from gui import GUI
+from GUI.MainWindow import MainWindow
 
-settings = Settings("settings.json")
-gui = GUI()
-loop = asyncio.get_event_loop()
-chatbot = Chatbot(settings, loop)
+from Controller.ChatBotController import ChatbotController
+from Model.Settings import Settings
+from Controller.RemoteControlController import RemoteControlController
+from Model.Data import Data
+from PySide2.QtWidgets import QApplication
 
-rc = RemoteControl(settings, loop)
+data = Data()
+app = QApplication()
 
-chatbot.set_remote_control(rc)
-gui.startup()
+loop = QEventLoop(app)
+asyncio.set_event_loop(loop)
+
+settings = Settings("settings.json", data)
+gui = MainWindow(data)
+chatbot = ChatbotController(settings, loop, data)
+
+data.remote_control = RemoteControlController(data, loop)
+chatbot.set_remote_control(data.remote_control)
+asyncio.create_task(data.status.check_stati())
+chatbot.run()

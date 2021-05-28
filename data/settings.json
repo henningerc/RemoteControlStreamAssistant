@@ -1,0 +1,103 @@
+{
+  "irc_token": "oauth:irc_token",
+  "client_id": "clientID",
+  "bot_nick": "YourNick",
+  "prefix": "!",
+  "bot_channel": "#YourChannel",
+
+  "remote_host": "localhost",
+  "remote_port": 4444,
+  "remote_password": "RemotePassword",
+
+  "image_folder": "images/",
+
+  "commands": [
+      {
+        "id": "fullscreen",
+        "title": "Fullscreen",
+        "position": "0,0",
+        "key": "F1",
+        "image": "fullscreen.png",
+        "commands": [
+          {
+            "command": "switch_scene",
+            "scene": "Scene: Fullscreen"
+          }
+        ]
+      },
+      {
+        "id": "mute",
+        "title": "Mute",
+        "position": "0,1",
+        "key": "F2",
+        "commands": [
+          {
+            "command": "toggle_mute",
+            "source": "Audio: Microphone"
+          }
+        ],
+        "status": [
+          {
+            "name": "active",
+            "default": "#00ff00",
+            "operator": "audio_muted",
+            "source":"Audio: Microphone",
+            "color": "#ff0000"
+          }
+        ]
+      },
+      {
+        "id": "ats",
+        "title": "American Truck Simulator",
+        "position": "0,3",
+        "key": "F4",
+        "commands": [
+          {
+            "command": "set_unmute",
+            "source": "Audio: Microphone"
+          },
+          {
+            "command": "switch_scene",
+            "scene": "Scene: American Truck Simulator"
+          }
+        ],
+        "status": [
+          {
+            "name": "active",
+            "default": "#ff0000",
+            "operator": "scene_active",
+            "scenes": {
+              "Scene: American Truck Simulator": "#00ff00"
+            }
+          }
+        ]
+      },
+      {
+        "id": "brb",
+        "title": "Be right Back",
+        "position": "0,2",
+        "key": "F3",
+        "commands": [
+          {
+            "command": "toggle",
+            "source": "Audio: Microphone"
+          },
+          {
+            "command": "switch_overlay",
+            "scene": "Base: On Screen",
+            "source": "Overlay: Be right Back"
+          }
+        ],
+        "status": [
+          {
+            "name": "active",
+            "default": "#ff0000",
+            "operator": "scene_item_visible",
+            "scene": "Base: On Screen",
+            "source": "Overlay: Be right Back",
+            "color": "#00ff00"
+          }
+        ]
+      }
+    ]
+}

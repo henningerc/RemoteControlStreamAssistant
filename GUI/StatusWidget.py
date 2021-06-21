@@ -13,7 +13,6 @@ class StatusWidget(QWidget):
         self.lamps: List[StatusLamp] = []
 
     def paintEvent(self, e):
-        self.resize(len(self.lamps) * 30, 30)
         painter = QPainter(self)
         painter.setRenderHint(QPainter.Antialiasing)
         i = 0
@@ -22,10 +21,12 @@ class StatusWidget(QWidget):
             i += 1
 
     def draw_circle(self, painter: QPainter, position, color):
+        size = len(self.lamps) * 30
+        w = self.geometry().width()
         col = QColor(*tuple(int(color[i:i + 2], 16) for i in (1, 3, 5)))
         painter.setBrush(col)
         painter.setPen(col)
-        painter.drawEllipse(position * 30 + 2, 2, 25, 25)
+        painter.drawEllipse((w - size) / 2 + position * 30 + 2, 2, 25, 25)
 
     def register_lamp(self, lamp: StatusLamp):
         self.lamps.append(lamp)

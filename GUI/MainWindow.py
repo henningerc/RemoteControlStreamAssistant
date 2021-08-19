@@ -1,6 +1,6 @@
 from typing import Dict
 
-from PySide2.QtWidgets import QWidget, QGridLayout, QSplitter
+from PySide2.QtWidgets import QWidget, QGridLayout, QSplitter, QApplication
 from PySide2.QtGui import QKeyEvent
 from PySide2 import QtCore
 
